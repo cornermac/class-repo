@@ -1,0 +1,136 @@
+<html>
+<!-- modified based on sample Bond demo site
+	Ted Morrill-McClure
+-->
+
+<head>
+<title>Animal Web Service</title>
+<style>
+body {font-family:georgia;}
+#creatures {
+	max-width:600px;
+	margin:5px;
+	padding:2px;
+}
+#creatures > div {
+	padding:5px;
+	min-height:40px;
+	margin-bottom:5px;
+	border:1px solid #E77D2C;
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	position:relative; /* required to place #pic to right */
+}
+
+#creatures h3 {
+	font-family:georgia;
+	padding:5px;
+	color:#fff;
+	background:#E77D2C;
+	margin:0;
+}
+
+#pic{
+	position:absolute;
+	right:10px;
+	top:10px;
+}
+</style>
+<script src="http://code.jquery.com/jquery-latest.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {  
+	$('#animal_form').submit(function(e){
+		var sort_order = $('input[name=animal_sort]:checked').val();
+		//alert(sort_order);
+		loadAJAX(sort_order);  //load AJAX and parse JSON file
+		e.preventDefault();  //no form submission necessary, as we're using AJAX
+	});
+});	
+
+
+function loadAJAX(cat)
+{
+	$.ajax({  
+		type: "GET",
+		dataType: "json",  
+		url: "api.php?cat=" + cat,
+		success: animalJSON,
+	});
+
+	$('#creatures').html('');//clear data
+}
+
+function toConsole(data)
+{//return data to console for JSON examination
+	console.log(data); //to view,use Chrome console, ctrl + shift + j
+}
+
+function animalJSON(data){
+	//$('#output').text(JSON.stringify(data));  //uncomment to view raw output
+	
+/*	
+	var actor_checkboxes = $('input[name=animal_actor]:checked'); //get all checked actor boxes
+	var actors = [];
+	$(actor_checkboxes).each(function(){ //grab all checked boxes values and
+		actors.push(this.value); //add to an array of actors
+	});
+
+	var header = data.Name;
+	$('#animalname').html(header); //put name into the animalname block
+	
+	if(actors != "")
+	{
+		actors = "Actors: " + actors.join(', ');  //join builds comma separated string from array
+		$('<h4></h4>').html(actors).appendTo('#filmtitle'); //append actors 
+	}else{
+		$('<h4></h4>').html('No actors selected').appendTo('#filmtitle');
+	}	
+*/	
+	
+	
+	$.each(data.animals, function(i,item){
+	
+		var text = '<b>Name</b>: ' + item.Name + '<br />';
+		text += '<b>Classification</b>: ' + item.Classification + '<br />';
+		text += '<b>Habitat</b>: ' + item.Habitat + '<br />';
+		text += '<b>Diet</b>: ' + item.Diet + '<br />';
+		//text += '<div id="pic"><img src="thumbnails/' + item.Image + '" /></div>';
+		$('<div></div>').html(text).appendTo('#creatures');  
+	});
+}
+
+</script>
+</head>
+	<body>
+	<h1>Animal Web Service</h1>
+	<form id="animal_form">
+	<div id="animal_sort">
+		<h3>Sort Order</h3>
+		<p>Please choose the sort order of the animals returned</p>
+		<input type="radio" name="animal_sort" value="diet">Sorted by Diet <br />
+		<input type="radio" name="animal_sort" value="class">Sorted by Classification<br />
+	</div>
+<!--	<div id="animal_actor">
+		<h3>Actor</h3>
+		<p>Please identify any actors on which to filter</p>
+		<input type="checkbox" name="animal_actor" value="Sean Connery">Sean Connery<br />
+		<input type="checkbox" name="animal_actor" value="George Lazenby">George Lazenby <br />
+		<input type="checkbox" name="animal_actor" value="Roger Moore">Roger Moore <br />
+		<input type="checkbox" name="animal_actor" value="Timothy Dalton">Timothy Dalton <br />
+		<input type="checkbox" name="animal_actor" value="Pierce Brosnan">Pierce Brosnan <br />
+		<input type="checkbox" name="animal_actor" value="Daniel Craig">Daniel Craig <br />
+    </div>
+-->
+		<input type="submit" value="submit" />
+	</form>
+		<!--<a href="year" class="category">Bond Films By Year</a><br />
+		<a href="box" class="category">Bond Films By International Box Office Totals</a>
+		<h3 id="animalname">Animal Name Will Go Here</h3> -->
+		<div id="creatures">
+			<p>Animals will go here</p>
+		</div>
+		<!--<div id="output">Results of JSON.stringify go here</div>-->
+	</body>
+</html>

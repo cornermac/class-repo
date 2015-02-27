@@ -1,0 +1,22 @@
+Name,Classification,Habitat,Diet
+Bald Eagle,Bird,Land,Carnivore
+Burrowing Owl,Bird,Desert,Carnivore
+Condore,Bird,Mountains,Carnivore
+Coyote,Mammal,Land,Carnivore
+Dog,Mammal,Land,Carnivore
+Harbor Seal,Mammal,Salt Water,Carnivore
+Moray Eel,Fish,Salt Water,Carnivore
+Nautillus,Fish,Salt Water,Carnivore
+Rattle Snake,Reptile,Desert,Carnivore
+Scorpian,Arachnid,Desert,Carnivore
+Sea Star,Echinoderm,Salt Water,Carnivore
+Tiger,Mammal,Forest,Carnivore
+Elk,Mammal,Temperate Forests,Herbivore
+Kangaroo,Marsupial,Plains,Herbivore
+Rabbit,Mammal,Land,Herbivore
+Rhino,Mammal,Plains,Herbivore
+Sea Urchin,Echinoderm,Salt Water,Herbivore
+Barnacle,Gastropod,Salt Water,Omnivore
+Human,Mammal,Land,Omnivore
+Possum,Marsupial,Land,Omnivore
+Slug,Gastropod,Humid Areas,Omnivore
