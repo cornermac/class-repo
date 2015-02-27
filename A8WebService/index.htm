@@ -64,32 +64,13 @@ function loadAJAX(cat)
 
 function toConsole(data)
 {//return data to console for JSON examination
-	console.log(data); //to view,use Chrome console, ctrl + shift + j
+	console.log(data);
 }
 
 function animalJSON(data){
 	//$('#output').text(JSON.stringify(data));  //uncomment to view raw output
 	
-/*	
-	var actor_checkboxes = $('input[name=animal_actor]:checked'); //get all checked actor boxes
-	var actors = [];
-	$(actor_checkboxes).each(function(){ //grab all checked boxes values and
-		actors.push(this.value); //add to an array of actors
-	});
-
-	var header = data.Name;
-	$('#animalname').html(header); //put name into the animalname block
-	
-	if(actors != "")
-	{
-		actors = "Actors: " + actors.join(', ');  //join builds comma separated string from array
-		$('<h4></h4>').html(actors).appendTo('#filmtitle'); //append actors 
-	}else{
-		$('<h4></h4>').html('No actors selected').appendTo('#filmtitle');
-	}	
-*/	
-	
-	
+		
 	$.each(data.animals, function(i,item){
 	
 		var text = '<b>Name</b>: ' + item.Name + '<br />';
@@ -112,22 +93,9 @@ function animalJSON(data){
 		<input type="radio" name="animal_sort" value="diet">Sorted by Diet <br />
 		<input type="radio" name="animal_sort" value="class">Sorted by Classification<br />
 	</div>
-<!--	<div id="animal_actor">
-		<h3>Actor</h3>
-		<p>Please identify any actors on which to filter</p>
-		<input type="checkbox" name="animal_actor" value="Sean Connery">Sean Connery<br />
-		<input type="checkbox" name="animal_actor" value="George Lazenby">George Lazenby <br />
-		<input type="checkbox" name="animal_actor" value="Roger Moore">Roger Moore <br />
-		<input type="checkbox" name="animal_actor" value="Timothy Dalton">Timothy Dalton <br />
-		<input type="checkbox" name="animal_actor" value="Pierce Brosnan">Pierce Brosnan <br />
-		<input type="checkbox" name="animal_actor" value="Daniel Craig">Daniel Craig <br />
-    </div>
--->
+
 		<input type="submit" value="submit" />
 	</form>
-		<!--<a href="year" class="category">Bond Films By Year</a><br />
-		<a href="box" class="category">Bond Films By International Box Office Totals</a>
-		<h3 id="animalname">Animal Name Will Go Here</h3> -->
 		<div id="creatures">
 			<p>Animals will go here</p>
 		</div>
